@@ -122,28 +122,11 @@ Where the available data is insufficient to estimate these quantities reliably, 
 
 The investigation was structured as a sequence of analytical layers rather than a single exploratory notebook.
 
-```text
-Raw Data
-   ↓
-Data Profiling & Quality Assessment
-   ↓
-Data Forensics
-   ↓
-Golden Dataset
-   ↓
-Performance Reconstruction
-   ↓
-Driver Analysis
-   ↓
-Counterfactual Analysis
-   ↓
-Investment Decision
-   ↓
-Production Analytics Design
-   ↓
-Executive Outputs
+**Raw Data → Data Profiling → Forensics → Golden Dataset → Performance → Drivers → Counterfactual → Investment Decision**
 
+This separates data validation from business interpretation and prevents unreliable KPIs from being used as decision metrics.
 ---
+
 
 
 # 3. Data Profiling & Forensics
