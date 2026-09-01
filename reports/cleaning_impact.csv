@@ -1,0 +1,7 @@
+dataset,raw_rows,golden_rows,removed_rows,removed_pct
+borrowers,30600,30000,600,1.96
+accounts,30000,30000,0,0.0
+agents,30000,30000,0,0.0
+calls,91350,90079,1271,1.39
+call_attempts,120000,120000,0,0.0
+payments,25500,25014,486,1.91

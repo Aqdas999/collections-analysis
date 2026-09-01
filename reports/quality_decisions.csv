@@ -1,0 +1,5 @@
+dataset,issue,decision,reason,impact
+borrowers,Duplicate rows,Remove exact duplicate rows only,Avoid collapsing legitimate borrower records,
+accounts,Missing borrower_id,Retain account and flag missing relationship,Account remains a valid business entity,
+payments,Duplicate payment records,Remove exact duplicates; investigate reference duplicates separately,Financial events require conservative deduplication,
+event_tables,Timezone differences,Preserve raw timestamp and create UTC timestamp,Prevents loss of source information while enabling consistent analysis,
