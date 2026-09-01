@@ -1,58 +1,144 @@
 # Collections Analytics — Data Analyst Assignment
 
-## Objective
+## Executive Summary
 
-Independently reconstruct collections performance, investigate the reported 11% month-on-month recovery improvement, identify the major drivers, evaluate the targeting strategy change, and assess the ₹10 Cr investment decision.
+This project independently investigates the business claim:
 
-## Project Structure
+> **"Recovery has improved by 11% month-on-month."**
 
-* `data/` — raw and golden datasets
-* `notebooks/` — analysis notebooks
-* `reports/` — analytical outputs and data-quality reports
-* `dashboard/` — executive dashboard
-* `docs/` — executive memo and architecture diagram
+The objective was not simply to reproduce a reported KPI, but to determine whether the claim remains valid after reconstructing the underlying data, validating metric definitions, investigating data-quality issues, analysing performance drivers, and testing the impact of a mid-period targeting strategy change.
 
-## Analysis Flow
+The analysis follows a **Raw → Forensics → Golden → Metrics → Drivers → Counterfactual → Decision** framework.
 
-Raw Data → Data Quality & Forensics → Golden Dataset → Performance Analysis → Driver Analysis → Counterfactual → Production Design → Executive Outputs
+### Key conclusion
 
-## Key Finding
+The reported **11% month-on-month improvement is not supported** by the independently reconstructed complete-month recovery data for January–July 2026.
 
-The reported **11% MoM recovery improvement is not supported** by the independently reconstructed complete-month data.
+Observed monthly recovery was volatile rather than consistently improving:
 
-January–July 2026 showed volatile monthly recovery changes, with average observed MoM growth of approximately **0.29%**.
+| Month | MoM Recovery Change |
+|---|---:|
+| February | -9.05% |
+| March | +11.11% |
+| April | -7.38% |
+| May | +5.20% |
+| June | -4.60% |
+| July | +6.48% |
 
-August was excluded from the normal MoM comparison because the available payment data only covers part of the month.
+The average observed month-on-month change across these complete months was approximately **+0.29%**, substantially below the reported 11%.
 
-## Data Quality
+August was excluded from the normal monthly trend because the available payment data covers only part of the month.
 
-Important issues identified include:
+The investigation also found that several operational metrics can be materially distorted by data grain, denominator choice, attribution logic and incomplete operational history. Therefore, the analysis distinguishes between:
 
-* Multiple dispositions associated with calls
-* Potential RPC inflation from naive call/disposition joins
-* Partial August data
-* Limited December operational data
-* PTP/payment status inconsistencies
-* Insufficient cost data for reliable ROI calculation
+- **Fact** — directly supported by reconstructed data
+- **Strong Evidence** — supported by multiple analytical checks
+- **Correlation** — an observed relationship without causal identification
+- **Hypothesis** — a plausible explanation requiring experimentation
 
-These issues were documented and incorporated into the analytical methodology.
+---
 
-## Counterfactual
+# 1. Business Questions
 
-A simple pre/post counterfactual treated January–March as the pre-change period and April–July as the post-change period.
+The analysis addresses four core business questions.
 
-Actual post-change recovery was approximately **₹72.27 Cr**, compared with approximately **₹74.57 Cr** under the estimated counterfactual.
+### 1. What actually happened?
 
-The resulting **−₹2.31 Cr difference is an observational estimate, not causal proof**.
+Reconstruct collections performance independently of the reported business claim.
 
-## Investment Recommendation
+This includes:
 
-The available observational data does not support a reliable ROI estimate for a full ₹10 Cr deployment.
+- Monthly recovery trends
+- Recovery efficiency
+- Portfolio and targeting mix
+- Account and borrower characteristics
+- Channel and campaign performance
+- Agent and operational performance
+- Identification of misleading or unstable metrics
 
-Better borrower targeting is recommended as the area for further investment, but the strategy should first be validated through a controlled experiment.
+### 2. Why did performance change?
 
-The experiment should measure incremental recovery per targeted account, recovery per agent-hour, cost per ₹ recovered, and statistical confidence in the treatment effect.
+Investigate whether observed changes were associated with:
 
-## Reproducibility
+- DPD
+- Risk / borrower segment
+- Client
+- Geography
+- Language
+- Agent
+- Agent tenure
+- Campaign
+- Channel
+- Vendor
+- Calling time
+- Attempt frequency
+- Targeting strategy
+- Borrower/account characteristics
 
-The notebooks contain the data profiling, cleaning, golden-layer construction, performance analysis, driver analysis, counterfactual analysis, and production analytics design used to produce the final outputs.
+The analysis deliberately separates observed associations from causal conclusions.
+
+### 3. Is the reported 11% improvement real?
+
+Independent definitions and calculations are required for metrics such as:
+
+- Contact rate
+- Right-party contact (RPC)
+- PTP rate
+- PTP kept rate
+- Recovery rate
+- Recovery per account
+- Recovery per agent-hour
+- Cost per ₹ recovered
+- Channel conversion
+
+The purpose is to establish whether the reported improvement is a genuine change in collection effectiveness or a consequence of denominator, attribution, portfolio-mix or data-quality effects.
+
+### 4. Where should ₹10 Cr be invested?
+
+The analysis evaluates the available strategic options:
+
+- Telephony
+- Additional agents
+- AI voice
+- Better borrower targeting
+- WhatsApp / digital engagement
+- Field operations
+
+The decision framework focuses on:
+
+- Incremental recovery
+- Cost
+- ROI
+- Break-even
+- Downside risk
+- Confidence in the estimate
+- Evidence required before deployment
+
+Where the available data is insufficient to estimate these quantities reliably, the analysis explicitly states the limitation rather than fabricating an ROI.
+
+---
+
+# 2. Analytical Approach
+
+The investigation was structured as a sequence of analytical layers rather than a single exploratory notebook.
+
+```text
+Raw Data
+   ↓
+Data Profiling & Quality Assessment
+   ↓
+Data Forensics
+   ↓
+Golden Dataset
+   ↓
+Performance Reconstruction
+   ↓
+Driver Analysis
+   ↓
+Counterfactual Analysis
+   ↓
+Investment Decision
+   ↓
+Production Analytics Design
+   ↓
+Executive Outputs
